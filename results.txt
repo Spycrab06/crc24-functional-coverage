@@ -1,0 +1,132 @@
+=== CRC-24/BLE Functional Coverage Testbench ===
+
+[Phase 2] Directed cross-coverage tests
+  PASS  len=1  [clear-overlap]  crc_out=0x000000 after clear
+  PASS  len=2  data[0]=0x00  crc=0x000000
+  PASS  len=4  data[0]=0x00  crc=0x000000
+  PASS  len=7  data[0]=0x00  crc=0x000000
+  PASS  len=1  data[0]=0xff  crc=0x932c40
+  PASS  len=3  data[0]=0xff  crc=0xc30fcf
+  PASS  len=5  data[0]=0xff  crc=0x9aa917
+  PASS  len=8  data[0]=0xff  crc=0xd5680a
+  PASS  len=1  data[0]=0xaa  crc=0xe23780
+  PASS  len=2  data[0]=0xaa  crc=0x38b5b7
+  PASS  len=4  data[0]=0xaa  crc=0xa5a5f5
+  PASS  len=7  data[0]=0xaa  crc=0xce33a7
+  PASS  len=1  data[0]=0x55  crc=0x711bc0
+  PASS  len=3  data[0]=0x55  crc=0xd2baba
+  PASS  len=5  data[0]=0x55  crc=0xe5d8f2
+  PASS  len=8  data[0]=0x55  crc=0xdf67f9
+  PASS  len=1  data[0]=0x00  crc=0x000000
+  PASS  len=3  data[0]=0x00  crc=0xb43834
+  PASS  len=4  data[0]=0x00  crc=0x296e78
+  PASS  len=8  data[0]=0x00  crc=0x12768c
+  PASS  len=1  data[0]=0x42  crc=0x6e5980
+  PASS  len=2  data[0]=0x5a  crc=0xa2ab33
+  PASS  len=6  data[0]=0x33  crc=0x580e88
+  PASS  len=8  data[0]=0x7e  crc=0x14de4b
+  PASS  len=1  data[0]=0xa5  crc=0xeb9fc0
+  PASS  len=3  data[0]=0xc0  crc=0xc19be7
+  PASS  len=4  data[0]=0xd8  crc=0x6fb520
+  PASS  len=7  data[0]=0xfe  crc=0xec7e1e
+  PASS  len=9  data[0]=0x00  crc=0x000000
+  PASS  len=15  data[0]=0xff  crc=0xfe5b50
+  PASS  len=11  data[0]=0xaa  crc=0x084035
+  PASS  len=13  data[0]=0x55  crc=0x717f86
+  PASS  len=16  data[0]=0x00  crc=0xb204f8
+  PASS  len=20  data[0]=0x42  crc=0xa552d0
+  PASS  len=37  data[0]=0xa5  crc=0x0eeb7c
+  PASS  len=4  data[0]=0x31  crc=0x000000
+  [info] no single byte gives CRC=0xFFFFFF (expected for CRC-24)
+
+[Phase 3] CRC init value tests
+  PASS  init=0x555555  len=4  crc=0xf889ed
+  PASS  init=0x555555  len=1  crc=0x1f1715
+  PASS  init=0x000000  len=4  crc=0x0120d7
+  PASS  init=0xffffff  len=3  crc=0xc30fcf
+  PASS  init=0xffffff  len=3  crc=0x000000
+  PASS  init=0xaaaaaa  len=2  crc=0x0000aa
+  PASS  init=0x123456  len=5  crc=0xc00d47
+  PASS  init=0xffffff  len=1  crc=0x784c7f
+  PASS  init=0x555555  len=2  crc=0x6491bd
+  PASS  init=0xffffff  len=5  crc=0x0d7a78
+  PASS  init=0x555555  len=7  crc=0xb816cd
+  PASS  init=0xffffff  len=8  crc=0x9aa917
+  PASS  init=0xabcdef  len=8  crc=0xcbd4cc
+  PASS  init=0x555555  len=10  crc=0x74547f
+  PASS  init=0xffffff  len=12  crc=0x31fca8
+  PASS  init=0xabcdef  len=25  crc=0xcad07b
+  PASS  init=0xe0aecd  len=2  crc=0x2a06ad
+  PASS  init=0x86a763  len=2  crc=0xfec869
+  PASS  init=0x5444a4  len=4  crc=0x0c738e
+  PASS  init=0x1c2de7  len=7  crc=0xae3d09
+  PASS  init=0x48dc01  len=1  crc=0x42719c
+
+[Phase 3.5] Known BLE CRC-24 test vectors
+  PASS  [BLE vec 1] 0x00 / init=0x555555 / crc=0x714e95
+  PASS  [BLE vec 2] 0x42 / init=0x555555 / crc=0x1f1715
+
+[Phase 4] Gap-cycle and mid-reset tests
+  PASS  len=4  [gap]  crc=0x000000
+  PASS  len=6  [gap]  crc=0x4057a7
+  PASS  len=4  data[0]=0xc3  crc=0x624384
+  PASS  [mid-reset recovery]  crc=0xeb9fc0
+
+[Phase 5] Random tests (30 packets)
+  PASS  len=2  data[0]=0x99  crc=0x4d8f3e
+  PASS  len=1  data[0]=0x67  crc=0x5fa640
+  PASS  len=7  data[0]=0xcc  crc=0x866f85
+  PASS  len=7  data[0]=0xd7  crc=0xecf7b9
+  PASS  len=8  data[0]=0xd4  crc=0x280c79
+  PASS  len=7  data[0]=0x90  crc=0xa8b873
+  PASS  len=3  data[0]=0x25  crc=0x8cb843
+  PASS  len=2  data[0]=0x5d  crc=0x70d3bd
+  PASS  len=4  data[0]=0xd4  crc=0x1ee636
+  PASS  len=2  data[0]=0xf5  crc=0xa93b63
+  PASS  len=2  data[0]=0x0a  crc=0xdfd44f
+  PASS  len=8  data[0]=0x85  crc=0xe90544
+  PASS  len=5  data[0]=0x72  crc=0xafb970
+  PASS  len=7  data[0]=0x4c  crc=0xccc957
+  PASS  len=7  data[0]=0x00  crc=0xfbd4b1
+  PASS  len=2  data[0]=0x26  crc=0x7be922
+  PASS  len=1  data[0]=0x8c  crc=0xd11500
+  PASS  len=1  data[0]=0xac  crc=0xe78d00
+  PASS  len=2  data[0]=0x9e  crc=0x4c3ff0
+  PASS  len=8  data[0]=0xf5  crc=0xadabe6
+  PASS  len=2  data[0]=0xf3  crc=0x7f4c19
+  PASS  len=4  data[0]=0x5e  crc=0xc2be27
+  PASS  len=2  data[0]=0x49  crc=0x64f962
+  PASS  len=1  data[0]=0x40  crc=0x6d3000
+  PASS  len=7  data[0]=0x1f  crc=0x322313
+  PASS  len=8  data[0]=0xe4  crc=0x2e3cd4
+  PASS  len=1  data[0]=0x49  crc=0x6122c0
+  PASS  len=8  data[0]=0x33  crc=0x4019f3
+  PASS  len=5  data[0]=0x5e  crc=0xd4a030
+  PASS  len=8  data[0]=0x55  crc=0xf70208
+
++==========================================================+
+|          FUNCTIONAL COVERAGE REPORT                      |
+|          Design : CRC-24/BLE  Covergroup : cov_crc24     |
++==========================================================+
+| Coverpoint             | Bins                  |   Cov%  |
++========================+=======================+=========+
+| cp_pkt_len             | 1/2-3/4-6/7-8/9-37    |  100.0% |
+| cp_data_in             | 0x00/0xFF/lo/hi       |  100.0% |
+| cp_crc_out             | 0x000000/0xFFFFFF/oth |  100.0% |
+| cp_rst_n               | in_reset / running    |  100.0% |
+| cp_clear               | clearing / no_clear   |  100.0% |
+| cp_crc_valid           | not_valid / asserted  |  100.0% |
+| cp_init                | 0x555555/0x0/0xF/oth  |  100.0% |
+| cp_pattern             | zeros/ones/AA/55/incr |  100.0% |
+| cp_reset_scenario      | idle/between/mid-txn  |  100.0% |
++========================+=======================+=========+
+| cx_data_pktlen (cross) | data_in x pkt_len(20) |  100.0% |
+| cx_clear_valid (cross) | clear x crc_valid     |  100.0% |
+| cx_pkt_pattern (cross) | pkt_len x pattern(30) |  100.0% |
+| cx_pkt_len_init (cross)| pkt_len x init(20)    |  100.0% |
+| cx_reset_txn   (cross) | scen x valid (1 ign.) |  100.0% |
++========================+=======================+=========+
+|                                                          |
+|  >>> OVERALL COVERAGE : 100.00%  -- ALL BINS HIT <<<     |
+|                                                          |
++==========================================================+
