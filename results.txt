@@ -1,5 +1,11 @@
+CPU time: .755 seconds to compile + .489 seconds to elab + .493 seconds to link
+Chronologic VCS simulator copyright 1991-2025
+Contains Synopsys proprietary information.
+Compiler version X-2025.06-SP1_Full64; Runtime version X-2025.06-SP1_Full64;  Mar 17 22:22 2026
+
 === CRC-24/BLE Functional Coverage Testbench ===
 
+[Phase 1] Reset
 [Phase 2] Directed cross-coverage tests
   PASS  len=1  [clear-overlap]  crc_out=0x000000 after clear
   PASS  len=2  data[0]=0x00  crc=0x000000
@@ -130,3 +136,9 @@
 |  >>> OVERALL COVERAGE : 100.00%  -- ALL BINS HIT <<<     |
 |                                                          |
 +==========================================================+
+
+$finish called from file "testbench.sv", line 797.
+$finish at simulation time                 7955
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 7955 ns
+CPU Time:      0.470 seconds;       Data structure size:   0.1Mb
