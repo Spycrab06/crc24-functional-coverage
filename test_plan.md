@@ -180,7 +180,7 @@ This is the key checker — every packet's expected output is derived from this 
 | **Test 1** — Reset Smoke Test | Confirm DUT resets; CRC clears, no false output | ✅ Phase 1 |
 | **Test 2** — Single Known Packet | Compare DUT against one hand-checked BLE example; exact CRC match | ✅ Phase 3.5 |
 | **Test 3** — Multiple Known Packets | All-zeros, all-ones, alternating (0xAA / 0x55), incrementing bytes | ✅ Phase 2 |
-| **Test 4** — Zero-Length Payload | CRC from init-only state, if supported | ⚠️ Not supported — `crc_valid` requires at least one `data_valid` pulse |
+| **Test 4** — Zero-Length Payload | CRC from init-only state, if supported | ⚠️ Not supported by hardware |
 | **Test 5** — Minimum Payload | Smallest legal BLE payload (1 byte) | ✅ Phase 2 |
 | **Test 6** — Maximum Payload | Largest supported payload (37 bytes, BLE ADV PDU) | ✅ Phase 2 |
 | **Test 7** — Different CRC Init Values | Multiple init seeds including 0x555555, 0x000000, 0xFFFFFF, arbitrary | ✅ Phase 3 |
@@ -226,27 +226,27 @@ Also check protocol behavior:
 
 ### Coverpoints
 
-| Coverpoint | Bins | Notes |
-|------------|------|-------|
-| Payload Length | 1 / 2–3 / 4–6 / 7–8 / 9–37 | Zero bin excluded; BLE ADV PDU range added |
-| Payload Pattern | zeros / ones / 0xAA / 0x55 / incr / other | Alternating split into two bins (0xAA and 0x55) |
-| CRC Init Value | 0x555555 / 0x000000 / 0xFFFFFF / others | Exact match to plan |
-| Reset Scenarios | idle_reset / between_txn / mid_txn / no_reset | Exact match to plan |
-| Input byte value | 0x00 / 0xFF / 0x01–0x7F / 0x80–0xFE | Added — not in original plan |
-| CRC output value | 0x000000 / 0xFFFFFF / other | Added — not in original plan |
-| Reset signal state | in_reset / running | Added — not in original plan |
-| Clear signal state | clearing / no_clear | Added — not in original plan |
-| CRC valid signal | not_valid / asserted | Added — not in original plan |
+| Coverpoint | Bins |
+|------------|------|
+| Payload Length | 1 / 2–3 / 4–6 / 7–8 / 9–37 |
+| Payload Pattern | zeros / ones / 0xAA / 0x55 / incr / other |
+| CRC Init Value | 0x555555 / 0x000000 / 0xFFFFFF / others |
+| Reset Scenarios | idle_reset / between_txn / mid_txn / no_reset |
+| Input byte value | 0x00 / 0xFF / 0x01–0x7F / 0x80–0xFE |
+| CRC output value | 0x000000 / 0xFFFFFF / other |
+| Reset signal state | in_reset / running |
+| Clear signal state | clearing / no_clear |
+| CRC valid signal | not_valid / asserted |
 
 ### Cross Coverage
 
-| Cross | Bins | Notes |
-|-------|------|-------|
-| Length × pattern | 30 bins | From plan §11 |
-| Length × init | 20 bins | From plan §11 |
-| Reset scenario × valid | 7 bins (1 ignore_bin) | From plan §11 |
-| Data value × length | 20 bins | Added — not in original plan |
-| Clear × valid | 4 bins | Added — not in original plan |
+| Cross | Bins |
+|-------|------|
+| Length × pattern | 30 bins |
+| Length × init | 20 bins |
+| Reset scenario × valid | 7 bins (1 ignore_bin) |
+| Data value × length | 20 bins |
+| Clear × valid | 4 bins |
 
 ---
 
