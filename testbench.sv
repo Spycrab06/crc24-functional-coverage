@@ -398,6 +398,7 @@ module tb;
     // -------------------------------------------------------
     //  Phase 1: Reset  -> hits cp_rst_n::in_reset
     // -------------------------------------------------------
+    $display("[Phase 1] Reset");
     reset_scenario = 1;
     rst_n = 0; clear = 0; start = 0; crc_init_val = 0; data_valid = 0; data_in = 0;
     repeat(4) @(posedge clk);
